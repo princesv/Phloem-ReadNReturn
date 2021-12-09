@@ -49,7 +49,7 @@ public class DetailActivity extends AppCompatActivity {
     ProgressBar progressBar;
     ScrollView orderDetails;
     MyTask runningTask;
-    final String API_KEY="u+Bx-Rxtxjfp8XxaxR_Q";
+    final String API_KEY="";
     String emailAddress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
