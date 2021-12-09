@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "754135921498",
+    "firebase_url": "https://phloem-2459e.firebaseio.com",
+    "project_id": "phloem-2459e",
+    "storage_bucket": "phloem-2459e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754135921498:android:ae02e180112c39b9d4b963",
+        "android_client_info": {
+          "package_name": "com.prince.phloem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754135921498-r9kreifosc76ikcg9qhosrbiga8d74up.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prince.phloem",
+            "certificate_hash": "98cf096be4532195e3d6ff2cdd06a2f34d438386"
+          }
+        },
+        {
+          "client_id": "754135921498-ak8mauqqj0fhfnl88e3st90gl1lq3t79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPeX58HEbLSkVqEmwSdD0DSnrsj0T-Xks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754135921498-ak8mauqqj0fhfnl88e3st90gl1lq3t79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
