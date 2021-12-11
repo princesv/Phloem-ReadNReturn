@@ -1,9 +1,16 @@
-# Phloem-ReadNReturn
-Responses of people in the Google form is saved to Google sheets from where it is read by Firebase database. This app directly displays all the responses to its UI and also allow the admin team members of phloem to keep a track of the orders whether they are delivered, retrieved or not available.
-![Screenshot](https://github.com/princesv/Phloem-ReadNReturn/blob/master/Screenshot_2020-08-02-16-18-55-21_e46387f68393a767fef05a21c9d11db9.jpg)
-![Screenshot2](https://github.com/princesv/Phloem-ReadNReturn/blob/master/Screenshot_2020-08-02-16-19-10-33_e46387f68393a767fef05a21c9d11db9.jpg)
-![Screemshot3](https://github.com/princesv/Phloem-ReadNReturn/blob/master/Capture.GIF)
-![Screemshot4](https://github.com/princesv/Phloem-ReadNReturn/blob/master/Capture2.GIF)
+# Phloem ReadNReturn
+
+The app is the data management app of my startup Phloem Read and return. The idea behind Phloem is to lend books and study materials to students during COVID pandemic who are unable to go to their schools or libraries because of lockdown. We collect our customers responces via a Google form and process our transaction with them. The app integrated with Pager Duty services helps us increase out work efficiency to a great extent. It instantly notifies our team as soon as there is a new response in he Google form and helps any one of our team members to acknowledge it. The app also notifies other team members about status update of every single order placed.
+
+
+## What did I Learn?
+I learnt to:
+
+* Use PagerDuty API 
+* Use of Firebase database
+* Implementing Recycler view
+* Use shared preferences
+* Use action bar
 
 
 
