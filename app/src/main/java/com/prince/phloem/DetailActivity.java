@@ -49,7 +49,7 @@ public class DetailActivity extends AppCompatActivity {
     ProgressBar progressBar;
     ScrollView orderDetails;
     MyTask runningTask;
-    final String API_KEY="";
+    final String API_KEY="u+Bx-Rxtxjfp8XxaxR_Q";
     String emailAddress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,14 +83,13 @@ public class DetailActivity extends AppCompatActivity {
         fnf.setText(intent.getStringExtra("FNF"));
         competitiveBooks.setText(intent.getStringExtra("COMPETITIVEBOOKS"));
         others.setText(intent.getStringExtra("OTHERS"));
-        statusDatabaseReference=FirebaseDatabase.getInstance().getReference("Status").child(nameOrder);
+        statusDatabaseReference=FirebaseDatabase.getInstance().getReference("Status").child(incidenceKey);
         getIdFromKey();
         buttonAcknowledged.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int s=1;
-
-                Status status=new Status(nameOrder,s);
+                Status status=new Status(incidenceKey,s);
                 statusDatabaseReference.setValue(status);
                 sendRequestAcknowledged();
             }
@@ -99,7 +98,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int s=2;
-                Status status=new Status(nameOrder,s);
+                Status status=new Status(incidenceKey,s);
                 statusDatabaseReference.setValue(status);
                 sendRequestResolved();
 
@@ -135,7 +134,6 @@ public class DetailActivity extends AppCompatActivity {
                 }
             }
         }).start();
-        Toast.makeText(DetailActivity.this, "update successful", Toast.LENGTH_SHORT).show();
     }
     void sendRequestAcknowledged(){
         final OkHttpClient client = new OkHttpClient();
@@ -167,42 +165,6 @@ public class DetailActivity extends AppCompatActivity {
         }).start();
     }
     void getIdFromKey(){
-       /* final OkHttpClient client = new OkHttpClient();
-
-        final Request request = new Request.Builder()
-                .url("https://api.pagerduty.com/incidents?incident_key="+insidenceKey+"&time_zone=UTC")
-                .get()
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/vnd.pagerduty+json;version=2")
-                .addHeader("Authorization", "Token token=u+Bx-Rxtxjfp8XxaxR_Q")
-                .build();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Response response = client.newCall(request).execute();
-                    String s1=response.body().string();
-                    JSONObject resObject=new JSONObject(s1);
-                    JSONArray incidences=resObject.getJSONArray("incidents");
-                    JSONObject incidence0=incidences.getJSONObject(0);
-                    JSONObject logEntry=incidence0.getJSONObject("first_trigger_log_entry");
-                    String htmlUrl=logEntry.getString("html_url");
-                    String id="";
-                    int i=39;
-                    while(htmlUrl.charAt(i)!='/'){
-                        id+=htmlUrl.charAt(i);
-                        i++;
-                    }
-                    getInsidenceId=id;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        */
        if(runningTask!=null){
            runningTask.cancel(true);
        }

@@ -10,18 +10,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Adapter extends ArrayAdapter {
     Activity context;
     List<Order> orderList;
-    List<Status> statusList;
+    HashMap<String, Integer> statusMap;
 
-    public Adapter(Activity context,List<Order> orderList,List<Status> statusList){
+    public Adapter(Activity context, List<Order> orderList, HashMap<String , Integer> statusMap){
         super(context,R.layout.list_layout,orderList);
         this.context=context;
         this.orderList=orderList;
-        this.statusList=statusList;
+        this.statusMap=statusMap;
 
     }
 
@@ -36,19 +38,16 @@ public class Adapter extends ArrayAdapter {
         TextView tvStatus=listViewItem.findViewById(R.id.status);
         tvName.setText(order.getName());
         tvContact.setText(""+order.getContact());
-        for(int i=0;i<statusList.size();i++){
-            Status objStatus=statusList.get(i);
-            if (order.getName().equals(objStatus.getIdNum())){
-                if(objStatus.getS()==1){
+            if (statusMap.containsKey(order.getId().toString())){
+                if(statusMap.get(order.getId().toString())==1){
                     tvStatus.setText("Acknowledged");
                     tvStatus.setTextColor(Color.parseColor("#008577"));
                 }
-                else if(objStatus.getS()==2){
+                else if(statusMap.get(order.getId().toString())==2){
                     tvStatus.setText("Transaction completed");
-                    tvStatus.setTextColor(Color.parseColor("#00574B"));}
+                    tvStatus.setTextColor(Color.parseColor("#00574B"));
+                }
             }
-
-        }
         return listViewItem;
     }
 }

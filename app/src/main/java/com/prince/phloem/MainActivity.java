@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,15 +30,16 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference databaseReferenceOrder;
     DatabaseReference databaseReferenceStatus;
     List<Order> orders;
-    List<Status> statuses;
     SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    HashMap<String, Integer> statusMap;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        statusMap=new HashMap<>();
         preferences=getApplicationContext().getSharedPreferences("myPref",0);
         editor=preferences.edit();
         if(preferences.getString("auth-id",null)==null){
@@ -46,18 +48,16 @@ public class MainActivity extends AppCompatActivity {
         }
         orderList=findViewById(R.id.list_order);
         orders=new ArrayList<>();
-        statuses=new ArrayList<>();
         databaseReferenceOrder= FirebaseDatabase.getInstance().getReference("Mastersheet");
         databaseReferenceStatus=FirebaseDatabase.getInstance().getReference("Status");
         databaseReferenceStatus.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                statuses.clear();
                 for (DataSnapshot snapshotStatus:dataSnapshot.getChildren()){
                     Status status=snapshotStatus.getValue(Status.class);
-                    statuses.add(status);
+                    statusMap.put(status.getIdNum(),status.getS());
                 }
-                Adapter adapter=new Adapter(MainActivity.this,orders,statuses);
+                Adapter adapter=new Adapter(MainActivity.this,orders,statusMap);
                 orderList.setAdapter(adapter);
 
             }
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     orders.add(order);
                 }
                 Collections.reverse(orders);
-                Adapter adapter=new Adapter(MainActivity.this,orders,statuses);
+                Adapter adapter=new Adapter(MainActivity.this,orders,statusMap);
                 orderList.setAdapter(adapter);
             }
 
