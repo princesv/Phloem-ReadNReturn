@@ -7,8 +7,8 @@ The app is the data management app of my startup Phloem Read and return. The ide
 I learnt to:
 
 * Use PagerDuty API 
-* Use of Firebase database
-* Implementing Recycler view
+* Use Firebase database
+* Implement Recycler view
 * Use shared preferences
 * Use action bar
 
