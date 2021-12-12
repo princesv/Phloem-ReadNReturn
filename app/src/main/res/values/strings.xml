@@ -2,4 +2,5 @@
     <string name="app_name">Phloem</string>
     <string name="submitId">submit</string>
     <string name="pagerdutyEmail">Pagerduty email</string>
+    <string name="pagerDutyauthId">Enter Pager Duty login ID</string>
 </resources>

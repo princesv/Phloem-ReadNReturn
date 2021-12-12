@@ -6,15 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".AuthActivity"
     android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="4dp"
+        android:elevation="16dp"
+        android:layout_margin="8dp">
+        <ImageView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="91dp"
+            android:src="@drawable/phloemheading"/>
+    </androidx.cardview.widget.CardView>
 <EditText
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:inputType="textEmailAddress"
-    android:id="@+id/emailId"/>
+    android:id="@+id/emailId"
+    android:layout_margin="8dp"
+    android:hint="@string/pagerDutyauthId"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submitId"
         android:onClick="authenticateUser"
+        android:layout_gravity="center"
         />
 </LinearLayout>
