@@ -44,8 +44,14 @@ public class Adapter extends ArrayAdapter {
                     tvStatus.setTextColor(Color.parseColor("#008577"));
                 }
                 else if(statusMap.get(order.getId().toString())==2){
-                    tvStatus.setText("Transaction completed");
+                    tvStatus.setText("Delivered");
+                    tvStatus.setTextColor(Color.parseColor("#008577"));
+                }else if(statusMap.get(order.getId().toString())==3){
+                    tvStatus.setText("Transaction complete");
                     tvStatus.setTextColor(Color.parseColor("#00574B"));
+                }else if(statusMap.get(order.getId().toString())==4){
+                    tvStatus.setText("Cannot process this order");
+                    tvStatus.setTextColor(Color.parseColor("#964B00"));
                 }
             }
         return listViewItem;

@@ -3,4 +3,9 @@
     <string name="submitId">submit</string>
     <string name="pagerdutyEmail">Pagerduty email</string>
     <string name="pagerDutyauthId">Enter Pager Duty login ID</string>
+    <string name="needs_attention">Needs attention</string>
+    <string name="acknowledge">Acknowledge new order</string>
+    <string name="order_delivered">Order delivered</string>
+    <string name="transaction_complete">Transaction complete</string>
+    <string name="cannot_process">Cannot process this order</string>
 </resources>

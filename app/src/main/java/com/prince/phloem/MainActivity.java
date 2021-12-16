@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("FNF",""+fnf);
                 intent.putExtra("COMPETITIVEBOOKS",""+competitiveBooks);
                 intent.putExtra("OTHERS",""+others);
+                intent.putExtra("state",statusMap.get(timeId));
                 startActivity(intent);
 
 

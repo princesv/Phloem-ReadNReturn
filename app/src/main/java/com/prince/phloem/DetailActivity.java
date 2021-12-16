@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,6 @@ public class DetailActivity extends AppCompatActivity {
     Button buttonAcknowledged;
     Button buttonComplete;
     DatabaseReference statusDatabaseReference;
-    TextView dbg;
     String incidenceKey;
     String incidenceId;
     ProgressBar progressBar;
@@ -51,15 +51,15 @@ public class DetailActivity extends AppCompatActivity {
     MyTask runningTask;
     final String API_KEY="u+Bx-Rxtxjfp8XxaxR_Q";
     String emailAddress;
+    RadioGroup radioGroup;
+    int status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         SharedPreferences pref=this.getSharedPreferences("myPref",MODE_PRIVATE);
+        radioGroup=findViewById(R.id.radioGroup);
         emailAddress=pref.getString("auth-id",null);
-        dbg=findViewById(R.id.debugtv);
-        buttonAcknowledged=findViewById(R.id.buttonAcknowledge);
-        buttonComplete=findViewById(R.id.buttonComplete);
         physics=findViewById(R.id.lphysics_content);
         chemistry=findViewById(R.id.lchemistry_content);
         mathematics=findViewById(R.id.lmathematics_content);
@@ -83,27 +83,45 @@ public class DetailActivity extends AppCompatActivity {
         fnf.setText(intent.getStringExtra("FNF"));
         competitiveBooks.setText(intent.getStringExtra("COMPETITIVEBOOKS"));
         others.setText(intent.getStringExtra("OTHERS"));
+        status=intent.getIntExtra("state",0);
+        setDefaultRadioButton(status);
         statusDatabaseReference=FirebaseDatabase.getInstance().getReference("Status").child(incidenceKey);
         getIdFromKey();
-        buttonAcknowledged.setOnClickListener(new View.OnClickListener() {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                int s=1;
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                int s=0;
+                if(i==R.id.radioButton1){
+                    s=0;
+                }else if(i==R.id.radioButton2){
+                    s=1;
+                    sendRequestAcknowledged();
+                }else if(i==R.id.radioButton3){
+                    s=2;
+                }else if(i==R.id.radioButton4){
+                    s=3;
+                    sendRequestResolved();
+                }else if(i==R.id.radioButton5){
+                    s=4;
+                    sendRequestResolved();
+                }
                 Status status=new Status(incidenceKey,s);
                 statusDatabaseReference.setValue(status);
-                sendRequestAcknowledged();
             }
         });
-        buttonComplete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int s=2;
-                Status status=new Status(incidenceKey,s);
-                statusDatabaseReference.setValue(status);
-                sendRequestResolved();
-
-            }
-        });
+    }
+    void setDefaultRadioButton(int status){
+        if(status==0){
+            radioGroup.check(R.id.radioButton1);
+        }else if(status==1){
+            radioGroup.check(R.id.radioButton2);
+        }else if(status==2){
+            radioGroup.check(R.id.radioButton3);
+        }else if(status==3){
+            radioGroup.check(R.id.radioButton4);
+        }else if(status==4){
+            radioGroup.check(R.id.radioButton5);
+        }
     }
     void sendRequestResolved(){
 
@@ -138,7 +156,6 @@ public class DetailActivity extends AppCompatActivity {
     void sendRequestAcknowledged(){
         final OkHttpClient client = new OkHttpClient();
         if(incidenceId==null){
-            Toast.makeText(this, "Old response. Action not possible", Toast.LENGTH_SHORT).show();
             return;
         }
         MediaType mediaType = MediaType.parse("application/json");
